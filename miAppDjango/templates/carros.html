@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+    {% block contenido %}
+    <ul>
+        {% for carro in lista_carros %}
+        <li>{{carro.id}} : {{carro.placa}} (<a href="carro/{{carro.id}}">Ver</a>)
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock contenido %}
