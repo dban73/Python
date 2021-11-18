@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from .models import Persona
 from .models import Carro
+
+from rest_framework import viewsets
+from .serializers import PersonaSerializer
 # Create your views here.
-from django.http import HttpResponse
+
 def index(request):
     personas = Persona.objects.order_by('nombre')
     context = {
@@ -18,6 +21,11 @@ def detail(request, persona_id):
         'persona': persona,
     }
     return render(request, 'persona.html',context)
+
+class PersonaViewSet(viewsets.ModelViewSet):
+    queryset = Persona.objects.all()
+    serializer_class = PersonaSerializer
+
 #Carros
 def index2(request):
     carros = Carro.objects.order_by('color')
